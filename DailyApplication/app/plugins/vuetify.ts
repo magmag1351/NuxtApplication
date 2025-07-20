@@ -10,9 +10,9 @@ export default defineNuxtPlugin((app) => {
       defaultTheme: 'dark',
       themes: {
         dark: {
-          dark: true,
+          dark: false,
           colors: {
-            background: '#1C1C1E', // iPhone Dark Mode Background
+            background: 'rgba(156, 216, 226, 0.74)', // iPhone Dark Mode Background
             surface: '#2C2C2E',    // iPhone Dark Mode Surface
             primary: '#0A84FF',    // iPhone Blue
             secondary: '#64D2FF',  // Lighter Blue
