@@ -1,10 +1,69 @@
 <template>
   <v-container fluid class="fill-height d-flex align-center justify-center">
-    <h1>Schedule</h1>
+    <v-card-title>スケジュール</v-card-title>
+    <v-card-text>
+      <v-data-table-server
+        v-model:options="tableOptions"
+        :headers="headers"
+        :items="users"
+        :items-length="itemLength"
+        :loading="isLoading"
+      >
+
+    </v-data-table-server>
+    </v-card-text>
   </v-container>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { User } from '#components';
+import { useFetchUsers } from '~/composables/user';
+import type{TableOptions} from '../../shared/types/dataTableOptions';
+
+const headers = [
+  {
+    title:'氏名',
+    key:'name',
+  },
+  {
+    title:'Eメール',
+    key:'email',
+  },
+  {
+    title:'ID',
+    key:'id',
+  },
+  {
+    title:'年齢',
+    key:'age',
+  },
+  {
+    title:'タイプ',
+    key:'type',
+  },
+  {
+    title:'性別',
+    key:'gender',
+  },
+  {
+    title:'住所',
+    key:'address'
+  }
+]
+
+const tableOptions = ref<TableOptions>({
+  page: 1,
+  itemPerPage: 10,
+  sortBy: [],
+  groupBy: [],
+  search: null,
+});
+
+const {
+  items: users,
+  isLoading,
+  itemlength,
+} = await useFetchUsers(tableOptions);
 
 </script>
 
